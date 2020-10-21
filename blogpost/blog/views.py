@@ -43,6 +43,7 @@ def update_blog_view(request, slug):
     if form.is_valid():
         form.save()
         form = BlogFormUpdate()
+        print('test')
         return redirect('blog:blog-detail', slug=slug)
     template_name = 'blog/update.html'
     context = {'object': obj, 'form': form}
