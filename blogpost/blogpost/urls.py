@@ -21,5 +21,5 @@ from blog.views import create_blog_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog-new/', create_blog_view, name='blog-create'),
-    path('blog/', include('blog.urls')),
+    path('blog/', include('blog.urls', namespace='blog')),
 ]

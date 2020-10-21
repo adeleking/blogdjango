@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import BlogModel
-from .forms import BlogForm
+from .forms import BlogForm, BlogFormUpdate
 
 
 def detail_blog_view(request, slug):
@@ -37,12 +37,13 @@ def delete_blog_view(request, slug):
     return render(request, template_name, context)
 
 def update_blog_view(request, slug):
+    if request.user.is_superuser:
     obj = get_object_or_404(BlogModel, slug=slug)
-    form = BlogForm(request.POST or None, instance=obj)
+    form = BlogFormUpdate(request.POST or None, instance=obj)
     if form.is_valid():
         form.save()
-        form = BlogForm()
-        return redirect('/')
+        form = BlogFormUpdate()
+        return redirect('blog:blog-detail', slug=slug)
     template_name = 'blog/update.html'
     context = {'object': obj, 'form': form}
     return render(request, template_name, context)

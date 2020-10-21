@@ -7,6 +7,7 @@ from .views import (
     list_blog_view,
 )
 
+app_name = 'blog'
 urlpatterns =[
     path('<str:slug>/delete/', delete_blog_view, name='blog-delete'),
     path('update/<str:slug>', update_blog_view, name='blog-update'),
