@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    {% for object in object_list %}
+        <div>
+            {% if object.publish_date %}
+                <small>{{object.publish_date}}</small>
+            {% endif %}
+                <h1>{{object.title}}</h1>
+                <br>
+                <p>{{object.content}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
